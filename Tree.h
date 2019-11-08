@@ -4,6 +4,9 @@
 #include <time.h>
 #include <string>
 
+using namespace std;
+using std::string;
+
 template<typename T, typename Comparable = T, T NONE = 0>
 class Tree{
 	struct Node{
