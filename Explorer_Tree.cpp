@@ -21,7 +21,7 @@ void list_dir(string dir){
 
 int main(){
 
-    /*cout << "Ruta del directorio a listar: ";
+    cout << "Ruta del directorio a listar: ";
     std::string dir;
     getline(cin, dir);
     list_dir(dir);
@@ -31,7 +31,7 @@ int main(){
         return s->getTipo();
     });
 
-    ex->add(new Explorador(dir, Nombre));*/
+    ex->add(new Explorador(dir, Nombre));
 
 
     return 0;
