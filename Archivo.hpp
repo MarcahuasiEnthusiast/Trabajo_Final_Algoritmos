@@ -3,14 +3,14 @@
 #include <string>
 
 using namespace std;
-using namespace System;
+//using namespace System;
 
 class Archivo
 {
 private:
 	string	nombre		;
 	string	extension	;
-	float	tamaño		;
+	float	tamaï¿½o		;
 	int		fecha		; // 20190402
 public:
 
@@ -18,19 +18,19 @@ public:
 	{
 		nombre = nom;
 		extension = ext;
-		tamaño = tam;
+		tamaï¿½o = tam;
 		fecha = fec;
 	}
 
 
 	string	getnombre	 	() {return nombre		;}
 	string	getextension  	() {return extension	;}
-	float	gettamaño		() {return tamaño		;}
+	float	gettamaï¿½o		() {return tamaï¿½o		;}
 	int		getfecha		() {return fecha		;}
 
 	void setnombre		(string	nombre		) { this->nombre		= nombre	;}	
 	void setextension	(string	extension	) { this->extension	= extension	;}
-	void settamaño		(float	tamaño		) { this->tamaño		= tamaño	;}	
+	void settamaï¿½o		(float	tamaï¿½o		) { this->tamaï¿½o		= tamaï¿½o	;}	
 	void setfecha		(int	fecha		) { this->fecha		= fecha		;}
 
 };
