@@ -1,5 +1,5 @@
 #pragma once
-#include "Tree.h"
+#include "Tree.hpp"
 #include <iostream>
 #include <string>
 

@@ -1,5 +1,5 @@
-#include "Tree.h"
-#include "Clase_Explorador.h"
+#include "Tree.hpp"
+#include "Clase_Explorador.hpp"
 #include <iostream>
 #include <dirent.h>
 #include <string>
