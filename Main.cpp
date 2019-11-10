@@ -5,14 +5,14 @@
 #include <dirent.h>
 
 // para listar los archivos 
-void list_dir(string dir){
+void list_dir(string dir, Tree<string>* tree_string){
     DIR* directorio;
     struct dirent* elemento;
     string elem;
     if(directorio = opendir(dir.c_str())){
         while(elemento = readdir(directorio)){
             elem = elemento->d_name;
-            cout<< elem << endl;
+            tree_string->add(elem);
         }
     }
     closedir(directorio);
@@ -22,8 +22,8 @@ int main()
 {
 	vector <Archivo> V;
 	
-	Tree <float>* T1 = new Tree <float> ();
-	Tree <float>* T2 = new Tree <float>();
+	Tree <float>*  T1 = new Tree <float> ();
+	Tree <float>*  T2 = new Tree <float> ();
 	Tree <string>* T3 = new Tree <string>();
 
 	int f, f2;
@@ -36,7 +36,13 @@ int main()
 	V.push_back(Archivo("Word2", "txt", 90.10, 20140804));
 	V.push_back(Archivo("Gaaa", "gaa", 64.44, 20110804));
 
+	//////////////////////////////////////////////////////////////
+	cout << "Ruta del directorio a listar: ";
+    string dir;
+    getline(cin, dir);
+    list_dir(dir, T3);
 
+	//////////////////////////////////////////////////////////////
 	cout << "Desea ordenar por peso (1) o por fecha (2) o por extension (3)"<<endl;
 	cin >> f;
 
