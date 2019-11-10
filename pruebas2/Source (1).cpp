@@ -15,7 +15,7 @@ int main()
 		cout << "{"
 			<< s.getnombre() << " "
 			<< s.getextension() << " "
-			<< s.gettamaño() << " "
+			<< s.gettamano() << " "
 			<< s.getfecha() << "}\n";
 	};
 
@@ -42,11 +42,11 @@ int main()
 		
 		for (int i = 0; i < V.size(); i++)
 		{
-			T1->add(V[i].gettamaño());
+			T1->add(V[i].gettamaï¿½o());
 		}
 
 
-		cout << "Qué desea buscar?" << endl;
+		cout << "Quï¿½ desea buscar?" << endl;
 		cin >> f2;
 
 		cout << T1->find(f2);
@@ -59,7 +59,7 @@ int main()
 			T2->add(V[i].getfecha());
 		}
 
-		cout << "Qué desea buscar?" << endl;
+		cout << "Quï¿½ desea buscar?" << endl;
 		cin >> f3;
 
 		cout <<  T2->find(f3);
@@ -72,7 +72,7 @@ int main()
 			T3->add(V[i].getextension());
 		}
 
-		cout << "Qué desea buscar?" << endl;
+		cout << "Quï¿½ desea buscar?" << endl;
 		cin >> f4;
 
 		cout << T3->find(f4);

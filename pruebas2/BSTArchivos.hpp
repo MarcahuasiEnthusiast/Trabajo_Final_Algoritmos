@@ -40,7 +40,7 @@ class Tree {
 			node = new Node(A);
 			++len;
 		}
-		else if (A.gettamaño() > node->A.gettamaño()) {
+		else if (A.gettamano() > node->A.gettamano()) {
 			node->right = addTam(node->right, A);
 		}
 		else {
@@ -169,14 +169,14 @@ class Tree {
 			cout << "No Encontrado" << endl;
 			return Archivo("", "", 0, 0);
 		}
-		if (T == node->A.gettamaño()) {
+		if (T == node->A.gettamano()) {
 			cout << "Encontrado" << endl;
 
-			cout << node->A.gettamaño() << endl;
+			cout << node->A.gettamano() << endl;
 
 			return node->A;
 		}
-		else if (T < node->A.gettamaño()) {
+		else if (T < node->A.gettamano()) {
 			return findTam(node->left, T);
 		}
 		else {
