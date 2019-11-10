@@ -1,28 +1,38 @@
 #include <iostream>
 #include <vector>
 #include "Archivo.hpp"
-#include "BST.hpp"
-
+//#include "BST.hpp"
+#include "BSTArchivos.hpp"
 int main()
 {
-	vector <Archivo> V;
-	
-	Tree <int>* T1 = new Tree <int> ();
-	Tree <float>* T2 = new Tree <float>();
-	Tree <string>* T3 = new Tree <string>();
+	//vector <Archivo> V;
+	//
+	//Tree <int>* T1 = new Tree <int> ();
+	//Tree <float>* T2 = new Tree <float>();
+	//Tree <string>* T3 = new Tree <string>();
+
+	Tree T;
 
 	int f, f2;
 	float f3;
 	string f4;
 
 
-	V.push_back(Archivo("Word", "txt", 112.85, 20190804));
+	/*V.push_back(Archivo("Word", "txt", 112.85, 20190804));
 	V.push_back(Archivo("Power", "ppt", 180.44, 20150804));
 	V.push_back(Archivo("Word2", "txt", 90.10, 20140804));
-	V.push_back(Archivo("Gaaa", "gaa", 64.44, 20110804));
+	V.push_back(Archivo("Gaaa", "gaa", 64.44, 20110804));*/
 
+	T.addTam(Archivo("Word", "txt", 112.85, 20190804));
+	T.addTam(Archivo("Power", "ppt", 180.44, 20150804));
+	T.addTam(Archivo("Word2", "txt", 90.10, 20140804));
+	T.addTam(Archivo("Gaaa", "gaa", 64.44, 20110804));
 
-	cout << "Desea ordenar por peso (1) o por fecha (2) o por extension (3)"<<endl;
+	T.findExt("txt");
+	T.findTam(112.85);
+	T.findFec(123);
+
+	/*cout << "Desea ordenar por peso (1) o por fecha (2) o por extension (3)"<<endl;
 	cin >> f;
 
 	if (f == 1)
@@ -69,7 +79,7 @@ int main()
 	{
 		return 0;
 	}
-
+*/
 
 
 	system("pause");
