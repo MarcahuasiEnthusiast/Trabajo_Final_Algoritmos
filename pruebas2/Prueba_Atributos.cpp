@@ -1,3 +1,12 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <stdio.h>
+#include <dirent.h>
+#include <string.h>
+#include <unistd.h>
+using namespace std;
+
 #ifndef DWORD
 #define WINAPI
 typedef unsigned long DWORD;
@@ -25,6 +34,31 @@ typedef struct _WIN32_FILE_ATTRIBUTE_DATA {
 
 
 int main(){
+    DIR *dir;
+    struct dirent *dp;
+    char * file_name = "BTSArchivos.hpp";
+    dir = opendir(".");
+    while ((dp=readdir(dir)) != NULL) {
+        if ( !strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..") )
+        {
+            // do nothing (straight logic)
+        } else {
+            file_name = dp->d_name; // use it
+            if (access(file_name, X_OK) != -1) {
+             cout << "executable:";
+            }
+            else if (dp->d_type == DT_DIR)
+            {
+               cout << "directory:";
+            }
+            else if(dp->d_type == DT_REG)
+            {
+               cout << "file:";
+            }
+            cout << "     \"%s\"\n",file_name;
+        }
+    }
+    closedir(dir);
 
     return 0;
 }
