@@ -5,6 +5,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <unistd.h>
+
 using namespace std;
 
 #ifndef DWORD
@@ -36,7 +37,7 @@ typedef struct _WIN32_FILE_ATTRIBUTE_DATA {
 int main(){
     DIR *dir;
     struct dirent *dp;
-    char * file_name = "BTSArchivos.hpp";
+    char * file_name;
     dir = opendir(".");
     while ((dp=readdir(dir)) != NULL) {
         if ( !strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..") )

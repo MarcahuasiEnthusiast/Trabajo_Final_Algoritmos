@@ -3,6 +3,7 @@
 #include "Archivo.hpp"
 //#include "BST.hpp"
 #include "BSTArchivos.hpp"
+
 int main()
 {
 	Tree T;
