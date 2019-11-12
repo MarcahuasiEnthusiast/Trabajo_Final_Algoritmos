@@ -3,10 +3,8 @@
 #include <functional>
 #include <vector>
 
-
 #ifndef __BST_2_HPP__
 #define __BST_2_HPP__
-
 
 template<typename T, typename Comparable = T>
 class Tree {
