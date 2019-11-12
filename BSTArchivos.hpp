@@ -101,8 +101,6 @@ class Tree {
 		
 	}
 
-
-
 	//void inorder(Node* node, std::function<void(T)> proc) {
 	//	if (node != nullptr) {
 	//		inorder(node->left, proc);
@@ -401,7 +399,7 @@ public:
 		return true;
 	}*/
 
-	vector <Archivo> FiltradoIgual(float n){
+	/*vector <Archivo> FiltradoIgual(float n){
 		vector <Archivo> V;
 		V.push_back(n);
 		root2 = findNode_tam(n);
@@ -415,7 +413,7 @@ public:
 		}
 
 		return V;
-	}
+	}*/
 
 	bool remove_by_tamano(float val) {
 		Node* aux = root;
