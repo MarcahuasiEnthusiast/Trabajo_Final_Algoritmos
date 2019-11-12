@@ -7,7 +7,7 @@
 using namespace std;
 using std::string;
 
-template<typename T, typename Comparable = T, T NONE = 0>
+template<typename T, typename Comparable = T>
 class Tree{
 	struct Node{
 		T elem;
@@ -58,7 +58,7 @@ class Tree{
 	}
 	T find(Node* node, Comparable val){
 		if(node == nullptr){
-			return NONE;
+			return 0;
 		}
 		if(val == key(node->elem)){
 			return node->elem;

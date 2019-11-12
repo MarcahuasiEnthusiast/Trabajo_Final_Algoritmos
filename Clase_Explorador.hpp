@@ -1,25 +1,32 @@
 #pragma once
-#include "Tree.hpp"
 #include <iostream>
 #include <string>
 
-enum Tipo{Nombre, Extension, Tamano, fecha_creacion};
 
-class Explorador{
-    std::string direccion_arch;
-    Tipo tipo;
+class Archivo{
+	string nombre;
+    string exten;
+    int fech;
+	float capacidad;
 public:
-    Explorador(std::string direccion_arch, Tipo tipo) 
-    : direccion_arch(direccion_arch), tipo(tipo){ }
+	Archivo(string nombre, string exten, float capacidad, int fech)
+	: nombre(nombre), capacidad(capacidad), fech(fech),exten(exten) { }
 
-    std::string getDirec(){ return direccion_arch;}
-    Tipo getTipo(){ return tipo;}
+	string getNombre(){ return nombre; }
+    string getExten(){ return exten; }
+	float  getCapacidad(){return capacidad; }
+    int    getFecha(){ return fech; }
 
-    void setDirec(std::string direccion_arch){
-        this->direccion_arch = direccion_arch;
+	void setnombre(string nombre){
+		this->nombre = nombre;
+	}
+    void setexten(string exten){
+        this->exten = exten;
     }
-    void setTipo(Tipo tipo){
-        this->tipo = tipo;
+	void setcapacidad(float capacidad){
+		this->capacidad = capacidad;
+	}
+    void setfecha(int fech){
+        this->fech = fech;
     }
-
 };
