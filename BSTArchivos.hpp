@@ -2,11 +2,11 @@
 
 #include "Archivo.hpp"
 #include <iostream>
+#include <functional>
+#include <vector>
 
 #ifndef __BSTARCHIVOS_HPP__
 #define __BSTARCHIVOS_HPP__
-
-#include <functional>
 
 using namespace std;
 
@@ -18,14 +18,13 @@ class Tree {
 		Node* left;
 		Node* right;
 
-		
-
 		Node(Archivo A/*T elem*/) : A(A), left(nullptr), right(nullptr) {}
 	};
 	
 	Node* root;
+	Node* root2;
 	int   len;
-	int flag = 0; // Si es igual a 1 es por nombre, 2 extension, 3 tamaño y 4 fecha
+	int flag = 0; // Si es igual a 1 es por nombre, 2 extension, 3 tamano y 4 fecha
 
 	//std::function<Comparable(T)>  key;
 
@@ -37,9 +36,6 @@ class Tree {
 		}
 	}
 
-
-	
-
 	Node* add(Node* node, Archivo A/*,T elem*/) {
 
 		if (flag == 3)
@@ -48,7 +44,7 @@ class Tree {
 				node = new Node(A);
 				++len;
 			}
-			else if (A.gettamaño() > node->A.gettamaño()) {
+			else if (A.gettamano() > node->A.gettamano()) {
 				node->right = add(node->right, A);
 			}
 			else {
@@ -181,14 +177,14 @@ class Tree {
 			cout << "No Encontrado" << endl;
 			return Archivo("", "", 0, 0);
 		}
-		if (T == node->A.gettamaño()) {
+		if (T == node->A.gettamano()) {
 			cout << "Encontrado" << endl;
 
-			cout << node->A.gettamaño() << endl;
+			cout << node->A.gettamano() << endl;
 
 			return node->A;
 		}
-		else if (T < node->A.gettamaño()) {
+		else if (T < node->A.gettamano()) {
 			return findTam(node->left, T);
 		}
 		else {
@@ -196,9 +192,6 @@ class Tree {
 		}
 		
 	}
-
-	
-
 
 	/*template <typename T>
 	Archivo find(Node* node, T F) {
@@ -248,14 +241,14 @@ class Tree {
 				cout << "No Encontrado" << endl;
 				return Archivo("", "", 0, 0);
 			}
-			if (T == node->A.gettamaño()) {
+			if (T == node->A.gettamaï¿½o()) {
 				cout << "Encontrado" << endl;
 
-				cout << node->A.gettamaño() << endl;
+				cout << node->A.gettamaï¿½o() << endl;
 
 				return node->A;
 			}
-			else if (T < node->A.gettamaño()) {
+			else if (T < node->A.gettamaï¿½o()) {
 				return findTam(node->left, T);
 			}
 			else {
@@ -285,6 +278,69 @@ class Tree {
 
 	}*/
 
+	
+	Node* findNode_nombre(Node* node, string val) {
+		if (node == nullptr) {
+			return 0;
+		}
+		if (val == node->A.getnombre()) {
+			return node;
+		}
+		else if (val < node->A.getnombre()) {
+			return findNode_nombre(node->left, val);
+		}
+		else {
+			return findNode_nombre(node->right, val);
+		}
+	}
+
+	
+	Node* findNode_fec(Node* node, int val) {
+		if (node == nullptr) {
+			return 0;
+		}
+		if (val == node->A.getfecha()) {
+			return node;
+		}
+		else if (val < node->A.getfecha()) {
+			return findNode_fec(node->left, val);
+		}
+		else {
+			return findNode_fec(node->right, val);
+		}
+	}
+
+	
+	Node* findNode_exte(Node* node, string val) {
+		if (node == nullptr) {
+			return 0;
+		}
+		if (val == node->A.getextension()) {
+			return node;
+		}
+		else if (val < node->A.getextension()) {
+			return findNode_exte(node->left, val);
+		}
+		else {
+			return findNode_exte(node->right, val);
+		}
+	}
+
+	
+	Node* findNode_tam(Node* node, float val) {
+		if (node == nullptr) {
+			return 0;
+		}
+		if (val == node->A.gettamano()) {
+			return node;
+		}
+		else if (val < node->A.gettamano()) {
+			return findNode_tam(node->left, val);
+		}
+		else {
+			return findNode_tam(node->right, val);
+		}
+	}
 
 
 public:
@@ -345,17 +401,33 @@ public:
 		return true;
 	}*/
 
-	bool remove_by_tamaño(float val) {
+	vector <Archivo> FiltradoIgual(float n){
+		vector <Archivo> V;
+		V.push_back(n);
+		root2 = findNode_tam(n);
+		Node* aux = root2;
+
+		while (aux->right != nullptr){
+			if(aux->right == root2){
+				V.push_back();
+			}
+			aux = aux->right;
+		}
+
+		return V;
+	}
+
+	bool remove_by_tamano(float val) {
 		Node* aux = root;
 		Node* parent;
 		bool left;
 		while (aux != nullptr) {
-			if (val == aux->A.gettamaño()) {
+			if (val == aux->A.gettamano()) {
 				break;
 			}
 			else {
 				parent = aux;
-				if (val < aux->A.gettamaño()) {
+				if (val < aux->A.gettamano()) {
 					left = true;
 					aux = aux->left;
 				}
@@ -560,7 +632,7 @@ public:
 
 	void change()
 	{
-		cout << "Por que criterio desea trabajar? (1 es por nombre, 2 extension, 3 tamaño y 4 fecha)" << endl;
+		cout << "Por que criterio desea trabajar? (1 es por nombre, 2 extension, 3 tamaï¿½o y 4 fecha)" << endl;
 		cin >> flag;
 	}
 };
