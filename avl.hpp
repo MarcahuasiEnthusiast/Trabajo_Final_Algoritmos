@@ -165,10 +165,10 @@ class AVLTree {
 		return node;
 	}
 
-	vector<T> FiltrarTerminaCon(string n) {
+	vector<T> filtrarTerminaCon(string n) {
 		string aux = n.substr(n.length() - 1, 1);
 
-		root2 = findNode(n);
+		root2 = findNode(aux);
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//right
 		Node * hijo = root2;
@@ -469,18 +469,24 @@ public:
 		V = filtradomayor(n);
 		return V;
 	}
+
 	vector <T> FiltradoMenor(Comparable n){
 		V.clear();
 		V = filtradomenor(n);
 		return V;
 	}
+
 	vector <T> FiltradoEqual(Comparable n){
 		V.clear();
 		V = filtradoequal(n);
 		return V;
 	}
 
-
+	vector<T> FiltrarTerminaCon(string n){
+		V.clar();
+		V = filtrarTerminaCon(n);
+		return V;
+	}
 	
 };
 
