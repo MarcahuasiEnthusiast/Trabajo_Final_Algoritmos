@@ -164,7 +164,7 @@ class AVLTree {
 		return node;
 	}
 
-	vector <Archivo*> filtrarTerminaCon(string n, vector<Archivo> aux) {
+	vector <Archivo> filtrarTerminaCon(string n, vector<Archivo> aux) {
 		for(int i = 0; i < aux.size(); ++i){
 			if(aux[i].getnombre().substr(aux[i].getnombre().length() - 1, 1) == n){
 				A.push_back(aux[i]);

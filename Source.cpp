@@ -27,6 +27,7 @@ int main(){
 		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamano() << " , " << A->getfecha() << " )" << endl;
 	};
 
+	//AVL para fecha
 	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 9)    );
 	avlfec->add(new Archivo("Word", "txt", 112.85, 4)	);
 	avlfec->add(new Archivo("Power", "ppt", 180.44, 5)	);
@@ -34,6 +35,7 @@ int main(){
 	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 3)    );
 	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 7)    );
 
+	//AVL para nombre
 	avlnom->add(new Archivo("Gdgf", "gaa", 64.44, 9)    );
 	avlnom->add(new Archivo("Word", "txt", 112.85, 4)	);
 	avlnom->add(new Archivo("Power", "ppt", 180.44, 5)	);
