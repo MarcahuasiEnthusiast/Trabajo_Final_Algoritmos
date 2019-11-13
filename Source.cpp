@@ -55,8 +55,6 @@ int main(){
 		Mostrar(V[i]);
 	}
 
-
-
 	//Mostrar(avlnom->find("Gaaa"));
 
 	system("pause");

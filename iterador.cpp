@@ -71,7 +71,7 @@ int main()
 			string name = entry.path().filename().string();
 			nombre.push_back(name);
 			
-			//TAMAÒO DE ARCHIVO. SI ES UN FOLDER ES 0 bytes
+			//TAMANO DE ARCHIVO. SI ES UN FOLDER ES 0 bytes
 			try {
 				std::cout << "File size = " << fs::file_size(entry.path()) << " bytes" << '\n';
 			}
