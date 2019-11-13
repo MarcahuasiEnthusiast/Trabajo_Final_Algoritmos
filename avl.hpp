@@ -12,6 +12,10 @@ class AVLTree {
 		Node* left;
 		Node* right;
 
+
+		
+		
+
 		Node(T elem)
 			: elem(elem), left(nullptr), right(nullptr), h(0), n(1) {}
 	};
@@ -51,6 +55,10 @@ class AVLTree {
 			inorder(node->right, proc);
 		}
 	}
+
+
+
+
 	T find(Node* node, Comparable val) {
 		if (node == nullptr) {
 			return NONE;
@@ -172,7 +180,11 @@ class AVLTree {
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//right
 
+
+
 		Node * hijo = root2;
+
+	
 
 		while (root2->right != nullptr)
 		{
@@ -241,6 +253,102 @@ class AVLTree {
 
 		return V;
 	}
+
+
+	
+
+	vector <T> filtradoequal(Comparable n)
+	{
+
+		root2 = findNode(n);
+		Node * root3 = root2;
+		Node * root4;
+
+		if (root2 != nullptr)
+		{
+			if (key(root2->elem) == n)
+			{
+				V.push_back(root2->elem);
+			}
+		}
+
+
+		while (root2->right != nullptr)
+		{
+
+			root2 = root2->right;
+			root3 = root2;
+
+			if (key(root2->elem) == n)
+			{
+				V.push_back(root2->elem);
+			}
+
+			while (root3->left != nullptr)
+			{
+				root3 = root3->left;
+				root4 = root3;
+
+				if (key(root3->elem) == n)
+				{
+					V.push_back(root3->elem);
+				}
+
+				while (root4->right != nullptr)
+				{
+					root4 = root3->right;
+
+					if (key(root4->elem) == n)
+					{
+						V.push_back(root4->elem);
+					}
+
+				}
+			}
+
+		}
+
+		while (root2->left != nullptr)
+		{
+
+			root2 = root2->left;
+			root3 = root2;
+
+			if (key(root2->elem) == n)
+			{
+				V.push_back(root2->elem);
+			}
+
+			while (root3->right != nullptr)
+			{
+				root3 = root3->right;
+				root4 = root3;
+
+				if (key(root3->elem) == n)
+				{
+					V.push_back(root3->elem);
+				}
+
+				while (root4->left != nullptr)
+				{
+					root4 = root3->left;
+
+					if (key(root4->elem) == n)
+					{
+						V.push_back(root4->elem);
+					}
+
+				}
+			}
+		}	
+
+		return V;
+	}
+
+
+
+
+
 
 
 public:
@@ -323,6 +431,28 @@ public:
 		inorder(root, proc);
 	}
 
+	vector <T> inorderV() {
+		vector <T> V;
+		std::function<void(T)> proc = [&](T a) { V.push_back(a); };
+		inorder(root, proc);
+		return V;
+	}
+
+	vector <T> antiinorderV() {
+		vector <T> V;
+		std::function<void(T)> proc = [&](T a) { V.push_back(a); };
+		inorder(root, proc);
+
+		for (int i = 0; i < V.size() / 2; i++)
+		{
+			T aux = V[i] ;
+			V[i] = V[V.size() - 1 - i];
+			V[V.size() - 1 - i] = aux;
+		}
+
+		return V;
+	}
+
 	vector <T> FiltradoMayor(Comparable n)
 	{
 		V.clear();
@@ -336,6 +466,15 @@ public:
 		V = filtradomenor(n);
 		return V;
 	}
+
+	vector <T> FiltradoEqual(Comparable n)
+	{
+		V.clear();
+		V = filtradoequal(n);
+		return V;
+	}
+
+
 	
 };
 
