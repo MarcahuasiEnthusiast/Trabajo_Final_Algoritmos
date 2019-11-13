@@ -5,20 +5,21 @@
 #include "avl.hpp"
 
 
+void bla(){
+	cout << "Hola";
+}
 
-
-int main()
-{
+int main(){
 	
 	typedef AVLTree <Archivo*, string, nullptr> AVLNom;
 	typedef AVLTree <Archivo*, string, nullptr> AVLExt;
 	typedef AVLTree <Archivo*, int, nullptr> AVLTam;
 	typedef AVLTree <Archivo*, int, nullptr> AVLFec;
 
-	auto knom = [](Archivo * A) { return A->getnombre(); };
+	auto knom = [](Archivo * A) { return A->getnombre();    };
 	auto kext = [](Archivo * A) { return A->getextension(); };
-	auto ktam = [](Archivo * A) { return A->gettamaño(); };
-	auto kfec = [](Archivo * A) { return A->getfecha(); };
+	auto ktam = [](Archivo * A) { return A->gettamano();    };
+	auto kfec = [](Archivo * A) { return A->getfecha();     };
 
 	AVLNom * avlnom = new AVLNom(knom);
 	AVLExt * avlext = new AVLExt(kext);
@@ -26,9 +27,8 @@ int main()
 	AVLFec * avlfec = new AVLFec(kfec);
 
 
-	auto Mostrar = [](Archivo * A)
-	{
-		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamaño() << " , " << A->getfecha() << " )" << endl;
+	auto Mostrar = [](Archivo * A){
+		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamano() << " , " << A->getfecha() << " )" << endl;
 	};
 
 	//auto add = [&](Archivo * A)
@@ -43,19 +43,16 @@ int main()
 	avlfec->add(new Archivo("Word", "txt", 112.85, 4)	);
 	avlfec->add(new Archivo("Power", "ppt", 180.44, 5)	);
 	avlfec->add(new Archivo("Word2", "txt", 90.10, 1)	);
-	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 3)  );
+	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 3)    );
 
 
 	vector <Archivo*> V = avlfec->FiltradoMayor(5);
 
 	cout << V.size();
 
-	for (int i = 0; i < V.size(); i++)
-	{
+	for (int i = 0; i < V.size(); i++){
 		Mostrar(V[i]);
 	}
-
-
 
 	//Mostrar(avlnom->find("Gaaa"));
 

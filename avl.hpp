@@ -12,10 +12,6 @@ class AVLTree {
 		Node* left;
 		Node* right;
 
-
-		
-		
-
 		Node(T elem)
 			: elem(elem), left(nullptr), right(nullptr), h(0), n(1) {}
 	};
