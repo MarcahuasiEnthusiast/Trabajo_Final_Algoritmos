@@ -8,8 +8,8 @@ int main(){
 	
 	typedef AVLTree <Archivo*, string, nullptr> AVLNom;
 	typedef AVLTree <Archivo*, string, nullptr> AVLExt;
-	typedef AVLTree <Archivo*, int, nullptr> AVLTam;
-	typedef AVLTree <Archivo*, int, nullptr> AVLFec;
+	typedef AVLTree <Archivo*, int,    nullptr> AVLTam;
+	typedef AVLTree <Archivo*, int,    nullptr> AVLFec;
 
 	auto knom = [](Archivo * A) { return A->getnombre();    };
 	auto kext = [](Archivo * A) { return A->getextension(); };
@@ -44,23 +44,26 @@ int main(){
 	string c = aux3.substr(aux3.length() - 1, 1);
 	string d = aux4.substr(aux4.length() - 1, 1);
 
-	avlfec->add(new Archivo("Word", "txt", 112.85, 4)	);
-	avlfec->add(new Archivo("Power", "ppt", 180.44, 5)	);
-	avlfec->add(new Archivo("Word2", "txt", 90.10, 1)	);
-	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 3)    );
+	avlfec->add(new Archivo("Word" , "txt", 112.85, 4));
+	avlfec->add(new Archivo("Power", "ppt", 180.44, 5));
+	avlfec->add(new Archivo("Word2", "txt", 90.10, 1) );
+	avlfec->add(new Archivo("Gaaa" , "gaa", 64.44, 3) );
 
-	avlnom->add(new Archivo(a, "txt", 112.85, 4));
-	avlnom->add(new Archivo(b, "ppt", 180.44, 5));
-	avlnom->add(new Archivo(c, "txt", 90.10, 1));
-	avlnom->add(new Archivo(d, "gaa", 64.44, 3) );
+	avlnom->add(new Archivo(aux , "txt", 112.85, 4));
+	avlnom->add(new Archivo(aux2, "ppt", 180.44, 5));
+	avlnom->add(new Archivo(aux3, "txt", 90.10, 1) );
+	avlnom->add(new Archivo(aux4, "gaa", 64.44, 3) );
 
 
 	vector <Archivo*> V = avlfec->FiltradoMayor(1);
-	vector <Archivo*> V2 = avlnom->FiltradoMayor(c);
+
+	//filtrado del ultimo caracter
+	vector <Archivo*> V2 = avlnom->FiltradoMayor(aux.substr(aux.length() - 1, 1));
 
 	cout << V.size() << endl;
 
-	cout << "	     NOMBRE EXTEN  TAM  CREACION" << endl;
+	cout << "ARCHIVO   NOMBRE  EXTEN   TAM   CREACION" << endl;
+	cout << "  v          v      v      v       v" << endl;
 	for (int i = 0; i < V.size(); i++){
 		cout << "Archivo " << i << ":"; Mostrar(V[i]);
 	} cout << endl;
