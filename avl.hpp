@@ -171,20 +171,30 @@ class AVLTree {
 		return node;
 	}
 
+	vector<T> FiltrarTerminaCon(string frase) {
 
+	vector<int >* nuevo = new vector<int>;
+	int n = _colum.getVector()->size();
+	for (unsigned int i = 0; i < n; i++){
+
+		int TamPalabra = _colum.getVector()->at(i).size() - 1;
+		char aux = _colum.getVector()->at(i).at(TamPalabra);
+		char aux2 = frase.at(0);
+
+		if (aux == aux2){
+				nuevo->push_back(i);
+			}
+		}
+		return nuevo;
+	}
 
 	vector <T> filtradomayor(Comparable n)
 	{
-
 		root2 = findNode(n);
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//right
 
-
-
 		Node * hijo = root2;
-
-	
 
 		while (root2->right != nullptr)
 		{
