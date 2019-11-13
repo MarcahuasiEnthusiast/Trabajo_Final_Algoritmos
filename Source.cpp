@@ -34,20 +34,29 @@ int main(){
 	//	avlfec->add(A);
 	//};
 
+	string aux("Word");
+	string aux2("Power");
+	string aux3("Word2");
+	string aux4("Gaaa");
+
+	string a = aux.substr(aux.length()   - 1, 1);
+	string b = aux2.substr(aux2.length() - 1, 1);
+	string c = aux3.substr(aux3.length() - 1, 1);
+	string d = aux4.substr(aux4.length() - 1, 1);
 
 	avlfec->add(new Archivo("Word", "txt", 112.85, 4)	);
 	avlfec->add(new Archivo("Power", "ppt", 180.44, 5)	);
 	avlfec->add(new Archivo("Word2", "txt", 90.10, 1)	);
 	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 3)    );
 
-	avlnom->add(new Archivo("Word", "txt", 112.85, 4));
-	avlnom->add(new Archivo("Power", "ppt", 180.44, 5));
-	avlnom->add(new Archivo("Word2", "txt", 90.10, 1));
-	avlnom->add(new Archivo("Gaaa", "gaa", 64.44, 3) );
+	avlnom->add(new Archivo(a, "txt", 112.85, 4));
+	avlnom->add(new Archivo(b, "ppt", 180.44, 5));
+	avlnom->add(new Archivo(c, "txt", 90.10, 1));
+	avlnom->add(new Archivo(d, "gaa", 64.44, 3) );
 
 
 	vector <Archivo*> V = avlfec->FiltradoMayor(1);
-	vector <Archivo*> V2 = avlnom->FiltradoMayor("Gaaa");
+	vector <Archivo*> V2 = avlnom->FiltradoMayor(c);
 
 	cout << V.size() << endl;
 
