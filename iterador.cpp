@@ -21,8 +21,8 @@ int ConvertirMes(string fecha) {
 	if (fecha.substr(4, 3) == "May") mesNum = 05;
 	if (fecha.substr(4, 3) == "Jun") mesNum = 06;
 	if (fecha.substr(4, 3) == "Jul") mesNum = 07;
-	if (fecha.substr(4, 3) == "Aug") mesNum = 8;
-	if (fecha.substr(4, 3) == "Sep") mesNum = 9;
+	if (fecha.substr(4, 3) == "Aug") mesNum =  8;
+	if (fecha.substr(4, 3) == "Sep") mesNum =  9;
 	if (fecha.substr(4, 3) == "Oct") mesNum = 10;
 	if (fecha.substr(4, 3) == "Nov") mesNum = 11;
 	if (fecha.substr(4, 3) == "Dec") mesNum = 12;
@@ -110,8 +110,6 @@ int main()
 		for (int i; i < nombre.size(); i++) {
 		files.push_back(Archivo(nombre[i], extension[i], tamano[i], stoi(fecha[i])));
 		}
-
-
 
 	system("pause");
 	return 0;

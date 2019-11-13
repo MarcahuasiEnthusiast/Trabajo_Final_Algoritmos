@@ -17,7 +17,7 @@
 //
 //	auto knom = [](Archivo * A) { return A->getnombre(); };
 //	auto kext = [](Archivo * A) { return A->getextension(); };
-//	auto ktam = [](Archivo * A) { return A->gettamaño(); };
+//	auto ktam = [](Archivo * A) { return A->gettamaï¿½o(); };
 //	auto kfec = [](Archivo * A) { return A->getfecha(); };
 //
 //	AVLNom * avlnom = new AVLNom(knom);
@@ -28,7 +28,7 @@
 //
 //	auto Mostrar = [](Archivo * A)
 //	{
-//		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamaño() << " , " << A->getfecha() << " )" << endl;
+//		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamano() << " , " << A->getfecha() << " )" << endl;
 //	};
 //
 //	//auto add = [&](Archivo * A)

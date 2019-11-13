@@ -5,8 +5,7 @@
 using namespace std;
 //using namespace System;
 
-class Archivo
-{
+class Archivo{
 private:
 	string	nombre		;
 	string	extension	;

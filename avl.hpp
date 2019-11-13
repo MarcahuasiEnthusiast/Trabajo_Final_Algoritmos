@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <vector>
+#include "Archivo.hpp"
 
 template<typename T, typename Comparable = T, T NONE = 0>
 class AVLTree {
@@ -20,6 +21,7 @@ class AVLTree {
 	Node* root;
 	Node * root2;
 	vector <T> V;
+	vector<Archivo> A;
 
 	std::function<Comparable(T)>  key;
 
@@ -76,7 +78,6 @@ class AVLTree {
 		if (node == root && val == key(root->elem)) {
 			return nullptr;
 		}
-		
 		if (node->left != nullptr) {
 			if (val == key(node->left->elem)) {
 				
@@ -84,7 +85,6 @@ class AVLTree {
 			}
 			
 		}
-
 		if (node->right != nullptr) {
 			if (val == key(node->right->elem)) {
 				
@@ -92,7 +92,6 @@ class AVLTree {
 			}
 			
 		}
-
 		if (val < key(node->elem)) {
 			return findDad(node->left, val);
 		}
@@ -165,35 +164,13 @@ class AVLTree {
 		return node;
 	}
 
-	vector<T> filtrarTerminaCon(string n) {
-		string aux = n.substr(n.length() - 1, 1);
-
-		root2 = findNode(aux);
-		Node * root3 = root2;
-		Node * papi = findDad(key(root2->elem));//right
-		Node * hijo = root2;
-
-		while (root2->right != nullptr){
-			root2 = root2->right;
-			root3 = root2;
-			V.push_back(root2->elem);
-			while (root3->left != nullptr){
-				root3 = root3->left;
-				V.push_back(root3->elem);
+	vector <Archivo*> filtrarTerminaCon(string n, vector<Archivo> aux) {
+		for(int i = 0; i < aux.size(); ++i){
+			if(aux[i].getnombre().substr(aux[i].getnombre().length() - 1, 1) == n){
+				A.push_back(aux[i]);
 			}
 		}
-		if (papi != nullptr){
-			if (key(papi->elem) > key(hijo->elem)){
-				V.push_back(papi->elem);
-				filtradomayor(key(papi->elem));
-			}
-			else if (key(hijo->elem) < key(root->elem)){
-				V.push_back(root->elem);
-				filtradomayor(key(root->elem));
-			}
-		}
-
-		return V;
+		return A;
 	}
 
 	vector <T> filtradomayor(Comparable n)
@@ -434,10 +411,6 @@ public:
 		return findDad(root, val);
 	}
 
-	//list<T> findAll(Comparable val) {
-	//	return nullptr; // TODO!!
-	//}*/
-
 	void inorder(std::function<void(T)> proc) {
 		inorder(root, proc);
 	}
@@ -482,10 +455,10 @@ public:
 		return V;
 	}
 
-	vector<T> FiltrarTerminaCon(string n){
-		V.clar();
-		V = filtrarTerminaCon(n);
-		return V;
+	vector<Archivo> FiltrarTerminaCon(string n, vector<Archivo> aux){
+		A.clear();
+		A = filtrarTerminaCon(n, aux);
+		return A;
 	}
 	
 };
