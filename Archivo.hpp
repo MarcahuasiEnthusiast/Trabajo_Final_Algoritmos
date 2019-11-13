@@ -10,7 +10,7 @@ class Archivo
 private:
 	string	nombre		;
 	string	extension	;
-	int	tamano		;
+	int	tamano		    ;
 	int		fecha		; // 20190402
 public:
 
@@ -25,12 +25,12 @@ public:
 
 	string	getnombre	 	() {return nombre		;}
 	string	getextension  	() {return extension	;}
-	int	gettamano		() {return tamano		;}
+	int	    gettamano		() {return tamano		;}
 	int		getfecha		() {return fecha		;}
 
 	void setnombre		(string	nombre		) { this->nombre		= nombre	;}	
-	void setextension	(string	extension	) { this->extension	= extension	;}
+	void setextension	(string	extension	) { this->extension	= extension	    ;}
 	void settamano		(int	tamano		) { this->tamano		= tamano	;}	
-	void setfecha		(int	fecha		) { this->fecha		= fecha		;}
+	void setfecha		(int	fecha		) { this->fecha		= fecha		    ;}
 
 };

@@ -34,10 +34,10 @@ int main(){
 	//	avlfec->add(A);
 	//};
 
-	string aux("Word");
+	string aux ("Word ");
 	string aux2("Power");
 	string aux3("Word2");
-	string aux4("Gaaa");
+	string aux4("Gaaa ");
 
 	string a = aux.substr ( aux.length() - 1, 1);
 	string b = aux2.substr(aux2.length() - 1, 1);
