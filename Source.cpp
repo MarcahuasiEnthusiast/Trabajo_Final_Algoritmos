@@ -39,7 +39,7 @@ int main(){
 	string aux3("Word2");
 	string aux4("Gaaa");
 
-	string a = aux.substr(aux.length()   - 1, 1);
+	string a = aux.substr ( aux.length() - 1, 1);
 	string b = aux2.substr(aux2.length() - 1, 1);
 	string c = aux3.substr(aux3.length() - 1, 1);
 	string d = aux4.substr(aux4.length() - 1, 1);
@@ -58,12 +58,12 @@ int main(){
 	vector <Archivo*> V = avlfec->FiltradoMayor(1);
 
 	//filtrado del ultimo caracter
-	vector <Archivo*> V2 = avlnom->FiltradoMayor(aux.substr(aux.length() - 1, 1));
+	vector <Archivo*> V2 = avlnom->FiltradoMayor(aux4);
 
-	cout << V.size() << endl;
+	//cout << V.size() << endl;
 
 	cout << "ARCHIVO   NOMBRE  EXTEN   TAM   CREACION" << endl;
-	cout << "  v          v      v      v       v" << endl;
+	cout << endl;
 	for (int i = 0; i < V.size(); i++){
 		cout << "Archivo " << i << ":"; Mostrar(V[i]);
 	} cout << endl;
@@ -74,6 +74,5 @@ int main(){
 
 	//Mostrar(avlnom->find("Gaaa"));
 
-	system("pause");
 	return 0;
 }

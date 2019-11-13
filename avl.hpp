@@ -172,11 +172,7 @@ class AVLTree {
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//right
 
-
-
 		Node * hijo = root2;
-
-	
 
 		while (root2->right != nullptr)
 		{
