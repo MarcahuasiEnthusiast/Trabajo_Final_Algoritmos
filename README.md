@@ -1,2 +1,2 @@
 # Trabajo_Final_Algoritmos
-## A ver que pasa
+## Por Roberto Vega, Ricardo Villanueva y Francesco Bassino
