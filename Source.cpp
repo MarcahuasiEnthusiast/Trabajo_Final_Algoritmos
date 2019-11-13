@@ -27,6 +27,11 @@ int main(){
 		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamano() << " , " << A->getfecha() << " )" << endl;
 	};
 
+	auto Mostrar_2 = [](Archivo A)
+	{
+		cout << " ( " << A.getnombre() << " , " << A.getextension() << " , " << A.gettamano() << " , " << A.getfecha() << " )" << endl;
+	};
+
 	//AVL para fecha
 	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 9)    );
 	avlfec->add(new Archivo("Word", "txt", 112.85, 4)	);
@@ -52,9 +57,9 @@ int main(){
 		Mostrar(V[i]);
 	}
 
-	vector <Archivo*> V2 = avlnom->FiltrarTerminaCon("d", avlnom);
+	vector <Archivo> V2 = avlnom->FiltrarTerminaCon("d", avlnom);
 	for (int i = 0; i < V2.size(); i++){
-		Mostrar(V2[i]);
+		Mostrar_2(V2[i]);
 	}
 
 	system("pause");
