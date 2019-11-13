@@ -2,6 +2,7 @@
 #define _BST_H_
 
 #include <functional>
+#include <vector>
 
 template<typename T, typename Comparable = T, T NONE = 0>
 class AVLTree {
@@ -11,10 +12,6 @@ class AVLTree {
 		int   n;
 		Node* left;
 		Node* right;
-
-
-		
-		
 
 		Node(T elem)
 			: elem(elem), left(nullptr), right(nullptr), h(0), n(1) {}
@@ -55,9 +52,6 @@ class AVLTree {
 			inorder(node->right, proc);
 		}
 	}
-
-
-
 
 	T find(Node* node, Comparable val) {
 		if (node == nullptr) {
@@ -171,21 +165,35 @@ class AVLTree {
 		return node;
 	}
 
-	vector<T> FiltrarTerminaCon(string frase) {
+	vector<T> FiltrarTerminaCon(string n) {
+		string aux = n.substr(n.length() - 1, 1);
 
-	vector<int >* nuevo = new vector<int>;
-	int n = _colum.getVector()->size();
-	for (unsigned int i = 0; i < n; i++){
+		root2 = findNode(n);
+		Node * root3 = root2;
+		Node * papi = findDad(key(root2->elem));//right
+		Node * hijo = root2;
 
-		int TamPalabra = _colum.getVector()->at(i).size() - 1;
-		char aux = _colum.getVector()->at(i).at(TamPalabra);
-		char aux2 = frase.at(0);
-
-		if (aux == aux2){
-				nuevo->push_back(i);
+		while (root2->right != nullptr){
+			root2 = root2->right;
+			root3 = root2;
+			V.push_back(root2->elem);
+			while (root3->left != nullptr){
+				root3 = root3->left;
+				V.push_back(root3->elem);
 			}
 		}
-		return nuevo;
+		if (papi != nullptr){
+			if (key(papi->elem) > key(hijo->elem)){
+				V.push_back(papi->elem);
+				filtradomayor(key(papi->elem));
+			}
+			else if (key(hijo->elem) < key(root->elem)){
+				V.push_back(root->elem);
+				filtradomayor(key(root->elem));
+			}
+		}
+
+		return V;
 	}
 
 	vector <T> filtradomayor(Comparable n)
@@ -267,8 +275,7 @@ class AVLTree {
 
 	
 
-	vector <T> filtradoequal(Comparable n)
-	{
+	vector <T> filtradoequal(Comparable n){
 
 		root2 = findNode(n);
 		Node * root3 = root2;
@@ -354,12 +361,6 @@ class AVLTree {
 
 		return V;
 	}
-
-
-
-
-
-
 
 public:
 	AVLTree(std::function<Comparable(T)>  key = [](T a) {return a; })
@@ -463,22 +464,17 @@ public:
 		return V;
 	}
 
-	vector <T> FiltradoMayor(Comparable n)
-	{
+	vector <T> FiltradoMayor(Comparable n){
 		V.clear();
 		V = filtradomayor(n);
 		return V;
 	}
-
-	vector <T> FiltradoMenor(Comparable n)
-	{
+	vector <T> FiltradoMenor(Comparable n){
 		V.clear();
 		V = filtradomenor(n);
 		return V;
 	}
-
-	vector <T> FiltradoEqual(Comparable n)
-	{
+	vector <T> FiltradoEqual(Comparable n){
 		V.clear();
 		V = filtradoequal(n);
 		return V;

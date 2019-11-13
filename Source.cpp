@@ -48,6 +48,7 @@ int main(){
 
 	vector <Archivo*> V = avlfec->antiinorderV();
 
+
 	//avlfec->inorder(Mostrar);
 
 	for (int i = 0; i < V.size(); i++)
