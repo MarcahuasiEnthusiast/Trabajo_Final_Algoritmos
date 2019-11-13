@@ -4,11 +4,6 @@
 #include "Archivo.hpp"
 #include "avl.hpp"
 
-
-void bla(){
-	cout << "Hola";
-}
-
 int main(){
 	
 	typedef AVLTree <Archivo*, string, nullptr> AVLNom;
