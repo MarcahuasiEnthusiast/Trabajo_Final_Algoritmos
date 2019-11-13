@@ -23,7 +23,7 @@ int main(){
 
 
 	auto Mostrar = [](Archivo * A){
-		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamano() << " , " << A->getfecha() << " )" << endl;
+		cout << " { " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamano() << " , " << A->getfecha() << " }" << endl;
 	};
 
 	//auto add = [&](Archivo * A)
@@ -41,12 +41,13 @@ int main(){
 	avlfec->add(new Archivo("Gaaa", "gaa", 64.44, 3)    );
 
 
-	vector <Archivo*> V = avlfec->FiltradoMayor(5);
+	vector <Archivo*> V = avlfec->FiltradoMayor(1);
 
-	cout << V.size();
+	cout << V.size() << endl;
 
+	cout << "	     NOMBRE EXTEN  TAM  CREACION" << endl;
 	for (int i = 0; i < V.size(); i++){
-		Mostrar(V[i]);
+		cout << "Archivo " << i << ":"; Mostrar(V[i]);
 	}
 
 	//Mostrar(avlnom->find("Gaaa"));
