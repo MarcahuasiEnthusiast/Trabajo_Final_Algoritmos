@@ -80,17 +80,13 @@ class AVLTree {
 		}
 		if (node->left != nullptr) {
 			if (val == key(node->left->elem)) {
-				
 				return node;
-			}
-			
+			}	
 		}
 		if (node->right != nullptr) {
 			if (val == key(node->right->elem)) {
-				
 				return node;
-			}
-			
+			}	
 		}
 		if (val < key(node->elem)) {
 			return findDad(node->left, val);
@@ -164,25 +160,32 @@ class AVLTree {
 		return node;
 	}
 
-	vector <Archivo> filtrarTerminaCon(string n, vector<Archivo> aux) {
+	/*vector <Archivo> filtrarTerminaCon(string n AVLTree aux) {
+		vector <Archivo> V;
+		for(int i = 0; i < V.size(); ++i){
+		std::function<void(string)> proc = [&](string a) { if() V.push_back(a); };
+
+		}
+		inorder(root, proc);
+		return V;
+	}*/
+
+	/*vector <Archivo> filtrarTerminaCon(string n, AVLTree aux) {
 		for(int i = 0; i < aux.size(); ++i){
 			if(aux[i].getnombre().substr(aux[i].getnombre().length() - 1, 1) == n){
 				A.push_back(aux[i]);
 			}
 		}
 		return A;
-	}
+	}*/
 
-	vector <T> filtradomayor(Comparable n)
-	{
+	vector <T> filtradomayor(Comparable n){
 		root2 = findNode(n);
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//right
-
 		Node * hijo = root2;
 
-		while (root2->right != nullptr)
-		{
+		while (root2->right != nullptr){
 			root2 = root2->right;
 			root3 = root2;
 			V.push_back(root2->elem);
@@ -192,16 +195,12 @@ class AVLTree {
 				V.push_back(root3->elem);
 			}
 		}
-
-		if (papi != nullptr)
-		{
-			if (key(papi->elem) > key(hijo->elem))
-			{
+		if (papi != nullptr){
+			if (key(papi->elem) > key(hijo->elem)){
 				V.push_back(papi->elem);
 				filtradomayor(key(papi->elem));
 			}
-			else if (key(hijo->elem) < key(root->elem))
-			{
+			else if (key(hijo->elem) < key(root->elem)){
 				V.push_back(root->elem);
 				filtradomayor(key(root->elem));
 			}
@@ -210,36 +209,27 @@ class AVLTree {
 		return V;
 	}
 
-	vector <T> filtradomenor(Comparable n)
-	{
-
+	vector <T> filtradomenor(Comparable n){
 		root2 = findNode(n);
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//left
 		Node * hijo = root2;
 
-
-		while (root2->left != nullptr)
-		{
+		while (root2->left != nullptr){
 			root2 = root2->left;
 			root3 = root2;
 			V.push_back(root2->elem);
-			while (root3->right != nullptr)
-			{
+			while (root3->right != nullptr){
 				root3 = root3->right;
 				V.push_back(root3->elem);
 			}
 		}
-
-		if (papi != nullptr)
-		{
-			if (papi->elem < hijo->elem)
-			{
+		if (papi != nullptr){
+			if (papi->elem < hijo->elem){
 				V.push_back(papi->elem);
 				filtradomenor(key(papi->elem));
 			}
-			else if (hijo->elem > root->elem)
-			{
+			else if (hijo->elem > root->elem){
 				V.push_back(root->elem);
 				filtradomenor(key(root->elem));
 			}
@@ -249,51 +239,32 @@ class AVLTree {
 		return V;
 	}
 
-
-	
-
 	vector <T> filtradoequal(Comparable n){
 
 		root2 = findNode(n);
 		Node * root3 = root2;
 		Node * root4;
 
-		if (root2 != nullptr)
-		{
-			if (key(root2->elem) == n)
-			{
+		if (root2 != nullptr){
+			if (key(root2->elem) == n){
 				V.push_back(root2->elem);
 			}
 		}
-
-
-		while (root2->right != nullptr)
-		{
-
+		while (root2->right != nullptr){
 			root2 = root2->right;
 			root3 = root2;
-
-			if (key(root2->elem) == n)
-			{
+			if (key(root2->elem) == n){
 				V.push_back(root2->elem);
 			}
-
-			while (root3->left != nullptr)
-			{
+			while (root3->left != nullptr){
 				root3 = root3->left;
 				root4 = root3;
-
-				if (key(root3->elem) == n)
-				{
+				if (key(root3->elem) == n){
 					V.push_back(root3->elem);
 				}
-
-				while (root4->right != nullptr)
-				{
+				while (root4->right != nullptr){
 					root4 = root3->right;
-
-					if (key(root4->elem) == n)
-					{
+					if (key(root4->elem) == n){
 						V.push_back(root4->elem);
 					}
 
@@ -301,41 +272,27 @@ class AVLTree {
 			}
 
 		}
-
-		while (root2->left != nullptr)
-		{
-
+		while (root2->left != nullptr){
 			root2 = root2->left;
 			root3 = root2;
-
-			if (key(root2->elem) == n)
-			{
+			if (key(root2->elem) == n){
 				V.push_back(root2->elem);
 			}
-
-			while (root3->right != nullptr)
-			{
+			while (root3->right != nullptr){
 				root3 = root3->right;
 				root4 = root3;
-
-				if (key(root3->elem) == n)
-				{
+				if (key(root3->elem) == n){
 					V.push_back(root3->elem);
 				}
-
-				while (root4->left != nullptr)
-				{
+				while (root4->left != nullptr){
 					root4 = root3->left;
-
-					if (key(root4->elem) == n)
-					{
+					if (key(root4->elem) == n){
 						V.push_back(root4->elem);
 					}
 
 				}
 			}
 		}	
-
 		return V;
 	}
 
