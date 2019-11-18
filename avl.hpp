@@ -21,7 +21,6 @@ class AVLTree {
 	Node* root;
 	Node * root2;
 	vector <T> V;
-	vector<Archivo> A;
 
 	std::function<Comparable(T)>  key;
 
@@ -164,7 +163,6 @@ class AVLTree {
 		vector <Archivo> V;
 		for(int i = 0; i < V.size(); ++i){
 		std::function<void(string)> proc = [&](string a) { if() V.push_back(a); };
-
 		}
 		inorder(root, proc);
 		return V;
@@ -410,12 +408,6 @@ public:
 		V.clear();
 		V = filtradoequal(n);
 		return V;
-	}
-
-	vector<Archivo> FiltrarTerminaCon(string n, vector<Archivo> aux){
-		A.clear();
-		A = filtrarTerminaCon(n, aux);
-		return A;
 	}
 	
 };
