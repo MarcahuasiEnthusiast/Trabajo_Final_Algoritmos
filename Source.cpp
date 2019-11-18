@@ -203,6 +203,14 @@ int main()
 
 	do
 	{
+		cout << "##########   ######   ##            ############   ###########   ##        ##     ###########" << endl;
+		cout << "##             ##     ##            ##             ##              #      #       ##       ##" << endl;
+		cout << "##             ##     ##            ##             ##               #    #        ##       ##" << endl;
+		cout << "#######        ##     ##            ##             ##                #  #         ##       ##" << endl;
+		cout << "##             ##     ##            ##########     #########           #          ###########" << endl;
+		cout << "##             ##     ##            ##             ##                #   #        ##         " << endl;
+		cout << "##             ##     ##            ##             ##               #     #       ##         " << endl;
+		cout << "##           ######   ###########   ############   ###########    ##       ##     ##         " << endl;
 		
 		cout << "Que desea hacer???" << endl;
 		cout << endl;
@@ -392,7 +400,7 @@ int main()
 
 			break;
 
-		}
+		}  
 
 		cout << "Desea hacer otra operación (1: si, 2 : no)" << endl;
 		cout << endl;
