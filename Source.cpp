@@ -202,14 +202,14 @@ int main()
 	vector <Archivo *> V;
 
 	do
-	{
-		cout << "##########   ######   ##            ############   ###########   ##        ##     ###########" << endl;
-		cout << "##             ##     ##            ##             ##              #      #       ##       ##" << endl;
-		cout << "##             ##     ##            ##             ##               #    #        ##       ##" << endl;
-		cout << "#######        ##     ##            ##             ##                #  #         ##       ##" << endl;
-		cout << "##             ##     ##            ##########     #########           #          ###########" << endl;
-		cout << "##             ##     ##            ##             ##                #   #        ##         " << endl;
-		cout << "##             ##     ##            ##             ##               #     #       ##         " << endl;
+	{	system("Color 1A");
+		cout << "##########   ######   ##            ############   ###########   ##        ##     ###########" << endl; system("Color 3D");
+		cout << "##             ##     ##            ##             ##              #      #       ##       ##" << endl; system("Color 1B");
+		cout << "##             ##     ##            ##             ##               #    #        ##       ##" << endl; system("Color 5A");
+		cout << "#######        ##     ##            ##             ##                #  #         ##       ##" << endl; system("Color 8C"); 
+		cout << "##             ##     ##            ##########     #########           #          ###########" << endl; system("Color 4B");
+		cout << "##             ##     ##            ##             ##                #   #        ##         " << endl; system("Color 9A");
+		cout << "##             ##     ##            ##             ##               #     #       ##         " << endl; system("Color 2A");
 		cout << "##           ######   ###########   ############   ###########    ##       ##     ##         " << endl;
 		
 		cout << "Que desea hacer???" << endl;
@@ -311,8 +311,15 @@ int main()
 			}
 			break;
 		case 3:
-			cout << "Aun no se implemento :V" << endl;
+			cout << "Por que criterio desea buscar???" << endl;
 			cout << endl;
+			cout << "1) Empieza con" << endl;
+			cout << "1) Finaliza con" << endl;
+			cout << "1) Contiene" << endl;
+			cout << endl;
+			cin >> x2;
+			cout << endl; cout << endl;
+			cout << "Agregue el criterio" << endl;
 			break;
 		case 4:
 
