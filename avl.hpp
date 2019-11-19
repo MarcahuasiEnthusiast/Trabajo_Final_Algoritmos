@@ -21,7 +21,6 @@ class AVLTree {
 	Node* root;
 	Node * root2;
 	vector <T> V;
-	vector<Archivo> A;
 
 	std::function<Comparable(T)>  key;
 
@@ -159,25 +158,6 @@ class AVLTree {
 		}
 		return node;
 	}
-
-	/*vector <Archivo> filtrarTerminaCon(string n AVLTree aux) {
-		vector <Archivo> V;
-		for(int i = 0; i < V.size(); ++i){
-		std::function<void(string)> proc = [&](string a) { if() V.push_back(a); };
-
-		}
-		inorder(root, proc);
-		return V;
-	}*/
-
-	/*vector <Archivo> filtrarTerminaCon(string n, AVLTree aux) {
-		for(int i = 0; i < aux.size(); ++i){
-			if(aux[i].getnombre().substr(aux[i].getnombre().length() - 1, 1) == n){
-				A.push_back(aux[i]);
-			}
-		}
-		return A;
-	}*/
 
 	vector <T> filtradomayor(Comparable n){
 		root2 = findNode(n);
@@ -494,12 +474,6 @@ public:
 		V = filtradocontiene(n);
 		return V;
 	}
-
-	/*vector<Archivo> FiltrarTerminaCon(string n, vector<Archivo> aux){
-		A.clear();
-		A = filtradoterminacon(n, aux);
-		return A;
-	}*/
 	
 };
 
