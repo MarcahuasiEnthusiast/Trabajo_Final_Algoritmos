@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <fstream>
 #include <experimental/filesystem>
 #include <string>
@@ -31,6 +31,8 @@ int ConvertirMes(string fecha) {
 	else return mesNum;
 }
 
+
+
 string Imprimirfecha(string fecha) {
 
 	int mess = ConvertirMes(fecha);
@@ -56,62 +58,17 @@ string ImprimirExtension(string nombre) {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-////SORT
-
-
-
-
-//int pivot(vector<Archivo*> V, int i, int f) {
-//	int piv = V[i]->gettamaño(); int izq = i + 1; int der = f;
-//	while (der >= izq) {
-//		if (V[izq]->gettamaño() <= piv) ++izq;
-//		else if (V[der]->gettamaño() >= piv) --der;
-//		else {
-//			Archivo * t = V[der];
-//			V[der--] = V[izq];
-//			V[izq++] = t;
-//		}
-//	}
-//	if (der != i) {
-//		Archivo * t = V[der];
-//		V[der] = V[i];
-//		V[i] = t;
-//	}
-//	return der;
-//}
-//
-//void quick(vector<Archivo*> V, int i, int f) {
-//	if (f > i) {
-//		int p = pivot(V, i, f);
-//		quick(V, i, p - 1);
-//		quick(V, p + 1, f);
-//	}
-//}
-//
-//void quicksort(vector<Archivo*> V, int n) {
-//	quick(V, 0, n - 1);
-//}
-
-
-
+string recortarnombre(string nombre) {
+	for (int i = 0; i < nombre.length(); i++) {
+		if (nombre[i] == '.') return nombre.substr(0, nombre.length() - (nombre.length() - i));
+	}
+}
 
 void insertionSortTam(vector<Archivo*> V, int n) {
 	for (int i = 1; i < n; ++i) {
 		int j = i;
 		Archivo * e = V[i];
-		while (j > 0 && V[j - 1]->gettamaño() > e->gettamaño()) {
+		while (j > 0 && V[j - 1]->gettamano() > e->gettamano()) {
 			V[j--] = V[j - 1];
 		}
 		if (j != i) V[j] = e;
@@ -119,23 +76,18 @@ void insertionSortTam(vector<Archivo*> V, int n) {
 }
 
 
-
 void shellSort(vector<Archivo*> V, int n) {
 	for (int gap = n / 2; gap > 0; gap /= 2) {
 		for (int i = gap; i < n; ++i) {
 			int j = i;
 			Archivo * e = V[i];
-			for (; j >= gap && V[j - 1]->gettamaño() > e->gettamaño(); j -= gap) {
+			for (; j >= gap && V[j - 1]->gettamano() > e->gettamano(); j -= gap) {
 				V[j] = V[j - 1];
 			}
 			if (j != i) V[j] = e;
 		}
 	}
 }
-
-
-
-
 
 
 void insertionSortNom(vector<Archivo*> V, int n) {
@@ -149,15 +101,6 @@ void insertionSortNom(vector<Archivo*> V, int n) {
 	}
 }
 
-
-/////SORT
-
-
-
-
-
-
-
 int main()
 {
 
@@ -169,12 +112,14 @@ int main()
 	string path = "D:\\UPC\\arqui\\semana 1";
 	for (auto entry : fs::directory_iterator(path)) {
 		//NOMBRE
-		cout << entry.path() << endl;
+		//cout << entry.path() << endl;
 
-		string name = entry.path().filename().string();
+		string name = recortarnombre(entry.path().filename().string());
+		cout << name << endl;
 		nombre.push_back(name);
 
-		//TAMAñO DE ARCHIVO. SI ES UN FOLDER ES 0 bytes
+
+		//TAMAï¿½O DE ARCHIVO. SI ES UN FOLDER ES 0 bytes
 		try {
 			std::cout << "File size = " << fs::file_size(entry.path()) << " bytes" << '\n';
 		}
@@ -186,40 +131,22 @@ int main()
 
 		//FECHA DE ULTIMA MODIFICACION
 		auto ftime = fs::last_write_time(entry.path());
-		time_t cftime = decltype(ftime)::clock::to_time_t(ftime); // assuming system_clock
-																  //cout << ConvertirMes(asctime(localtime(&cftime)));
-																  //Imprimirfecha(asctime(localtime(&cftime)));
+		time_t cftime = decltype(ftime)::clock::to_time_t(ftime);
 		string date = Imprimirfecha(asctime(localtime(&cftime)));
-		/*cout << date << endl;*/
 		fecha.push_back(date);
 
 		//EXTENSION
 
 		string ext;
 		ext = entry.path().filename().string();
-		/*cout << ImprimirExtension(ext) << endl;*/
 		extension.push_back(ImprimirExtension(ext));
-		/*cout << endl;*/
 	}
-
-	//prueba de que se guardan los atributos
-	/*for (int i; i < nombre.size(); i++) {
-		cout << nombre[i] << endl;
-		cout << extension[i] << endl;
-		cout << tamano[i] << endl;
-		cout << fecha[i] << endl;
-	}*/
-
 
 	vector <Archivo*> files;
 
 	for (int i; i < nombre.size(); i++) {
 		files.push_back(new Archivo(nombre[i], extension[i], tamano[i], stoi(fecha[i])));
 	}
-
-	/*for (int i; i < files.size(); i++) {
-		cout << " ( " << files[i].getnombre() << " , " << files[i].getextension() << " , " << files[i].gettamaño() << " , " << files[i].getfecha() << " )" << endl;
-	}*/ //Prueba
 
 	///////////////////////////////////FIN DE ESCANEO 
 	////INICIO DE ARBOLES
@@ -232,7 +159,7 @@ int main()
 
 	auto knom = [](Archivo * A) { return A->getnombre(); };
 	auto kext = [](Archivo * A) { return A->getextension(); };
-	auto ktam = [](Archivo * A) { return A->gettamaño(); };
+	auto ktam = [](Archivo * A) { return A->gettamano(); };
 	auto kfec = [](Archivo * A) { return A->getfecha(); };
 
 	AVLNom * avlnom = new AVLNom(knom);
@@ -243,7 +170,7 @@ int main()
 
 	auto Mostrar = [](Archivo * A)
 	{
-		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamaño() << " , " << A->getfecha() << " )" << endl;
+		cout << " ( " << A->getnombre() << " , " << A->getextension() << " , " << A->gettamano() << " , " << A->getfecha() << " )" << endl;
 	};
 
 	auto add = [&](Archivo * A)
@@ -261,37 +188,11 @@ int main()
 
 	///////////////////////////////FIN DE ARBOLES
 
-
-	//for (int i = 0; i < files.size(); i++) {
-	//	add(files[i]);
-	//}
-
-
-	////avlext->inorder(Mostrar);
-
-
-	//vector <Archivo*> V = avltam->FiltradoMayor(904);
-
-	////avlfec->inorder(Mostrar);
-
-	//for (int i = 0; i < V.size(); i++)
-	//{
-	//	Mostrar(V[i]);
-	//}
-
-
-
-	//Mostrar(avlnom->find("Gaaa"));
-
-
-	/////////////////////////////
-	////CONSOLA
-
 	cout << endl;
 	cout << endl;
 	cout << endl;
 
-	cout << "Serialización e indexado completos....." << endl;
+	cout << "Serializacion e indexado completos....." << endl;
 	cout << endl;
 	cout << endl;
 	cout << endl;
@@ -303,82 +204,78 @@ int main()
 	Archivo * A;
 	vector <Archivo *> V;
 
-	do
-	{
-		
+	do {
+		system("Color 1A");
+		cout << "##########   ######   ##            ############   ###########   ##        ##     ###########" << endl; system("Color 3D");
+		cout << "##             ##     ##            ##             ##              #      #       ##       ##" << endl; system("Color 1B");
+		cout << "##             ##     ##            ##             ##               #    #        ##       ##" << endl; system("Color 5A");
+		cout << "#######        ##     ##            ##             ##                #  #         ##       ##" << endl; system("Color 8C");
+		cout << "##             ##     ##            ##########     #########           #          ###########" << endl; system("Color 4B");
+		cout << "##             ##     ##            ##             ##                #   #        ##         " << endl; system("Color 9A");
+		cout << "##             ##     ##            ##             ##               #     #       ##         " << endl; system("Color 2A");
+		cout << "##           ######   ###########   ############   ###########    ##       ##     ##         " << endl;
+
 		cout << "Que desea hacer???" << endl;
 		cout << endl;
-		cout << "1)Buscar un archivo" << endl;
-		cout << "2)Filtrar por tamano" << endl;
-		cout << "3)Filtrar por nombre" << endl;
-		cout << "4)Ordenar archivos" << endl;
+		cout << "1)Buscar un archivo :" << endl;
+		cout << "2)Filtrar por tamano:" << endl;
+		cout << "3)Filtrar por nombre:" << endl;
+		cout << "4)Ordenar archivos  :" << endl;
 		cout << endl;
 		cin >> x;
 
 		cout << endl;	cout << endl;
 
-		switch (x)
-		{
+		switch (x) {
 		case 1:
 			cout << "Por que criterio desea buscar???" << endl;
 			cout << endl;
-			cout << "1)Nombre" << endl;
-			cout << "2)Extension" << endl;
-			cout << "3)Tamano" << endl;
-			cout << "4)Fecha" << endl;
+			cout << "1)Nombre   :" << endl;
+			cout << "2)Extension:" << endl;
+			cout << "3)Tamano   :" << endl;
+			cout << "4)Fecha    :" << endl;
 			cout << endl;
 			cin >> x2;
 			cout << endl; cout << endl;
 			cout << "Agregue el criterio" << endl;
-			switch (x2)
-			{
+			switch (x2) {
 			case 1:
 				cin >> dato2;
-
 				A = avlnom->find(dato2);
-
 				break;
 			case 2:
 				cin >> dato2;
 				A = avlext->find(dato2);
-				
 				break;
 			case 3:
 				cin >> dato;
-
 				A = avltam->find(dato);
 				break;
 			case 4:
 				cin >> dato;
-
 				A = avlfec->find(dato);
 				break;
-
-
 			}
 			cout << endl; cout << endl;
-			if (A != nullptr)
-			{
+			if (A != nullptr) {
 				Mostrar(A);
 			}
-			else
-			{
+			else {
 				cout << "No encontrado" << endl;
 			}
-			
+
 			break;
 		case 2:
 			cout << "Por que criterio desea filtrar???" << endl;
 			cout << endl;
-			cout << "1)Mayor a" << endl;
-			cout << "2)Menor a" << endl;
-			cout << "3)Igual a" << endl;
+			cout << "1)Mayor a: " << endl;
+			cout << "2)Menor a: " << endl;
+			cout << "3)Igual a: " << endl;
 			cout << endl;
 			cin >> x2;
 			cout << endl; cout << endl;
-			cout << "Agregue el criterio" << endl;
-			switch (x2)
-			{
+			cout << "Agregue el criterio: " << endl;
+			switch (x2) {
 			case 1:
 				cin >> dato;
 
@@ -399,10 +296,11 @@ int main()
 
 			}
 			cout << endl; cout << endl;
-			for (int i = 0; i < V.size(); i++)
-			{
+
+			for (int i = 0; i < V.size(); i++) {
 				Mostrar(V[i]);
 			}
+
 			cout << endl;
 			cout << endl;
 			cout << "Desea ordenar el filtrado???" << endl;
@@ -413,50 +311,69 @@ int main()
 			cin >> ord;
 			cout << endl;
 			cout << endl;
-			switch (ord)
-			{
+			switch (ord) {
 			case 1:
-				
-				insertionSortTam(V, V.size());
 
-				for (int i = 0; i < V.size(); i++)
-				{
+				insertionSortTam(V, V.size());
+				for (int i = 0; i < V.size(); i++) {
 					Mostrar(V[i]);
 				}
-				
+
 				break;
 			case 2:
 				insertionSortTam(V, V.size());
 
-				for (int i = 0; i < V.size() / 2; i++)
-				{
+				for (int i = 0; i < V.size() / 2; i++) {
 					Archivo* aux = V[i];
 					V[i] = V[V.size() - 1 - i];
 					V[V.size() - 1 - i] = aux;
 				}
 
 
-				for (int i = 0; i < V.size(); i++)
-				{
+				for (int i = 0; i < V.size(); i++) {
 					Mostrar(V[i]);
 				}
 
 				break;
 			case 3:
-				
 				break;
 			default:
 				break;
-
 			}
-
-
-
-
 			break;
 		case 3:
-			cout << "Aun no se implemento :V" << endl;
+			cout << "Por que criterio desea filtrar???" << endl;
 			cout << endl;
+			cout << "1)Comienza con: " << endl;
+			cout << "2)Termina con : " << endl;
+			cout << "3)Contiene    : " << endl;
+			cout << endl;
+			cin >> x2;
+			cout << endl; cout << endl;
+			cout << "Agregue el criterio: " << endl;
+			switch (x2) {
+			case 1:
+				cin >> dato2;
+				V = avlnom->antiinorderV();
+				V = avlnom->FiltradoEmpiezaCon(dato2, V);
+				break;
+			case 2:
+				cin >> dato2;
+				V = avlnom->inorderV();
+				V = avlnom->FiltradoTerminaCon(dato2, V);
+				break;
+			case 3:
+				cin >> dato2;
+				V = avlnom->inorderV();
+				V = avlnom->FiltradoContiene(dato2, V);
+				break;
+			default:
+				break;
+			}
+			cout << endl; cout << endl;
+			for (int i = 0; i < V.size(); i++) {
+				Mostrar(V[i]);
+			}
 			break;
 		case 4:
 
@@ -473,89 +390,62 @@ int main()
 			cin >> ord;
 			cout << endl;
 
-			if (ord == 1)
-			{
-				if (x2 == 1)
-				{
+			if (ord == 1) {
+				if (x2 == 1) {
 					V = avlnom->inorderV();
 					avlnom->inorder(Mostrar);
 				}
-				else if (x2 == 2)
-				{
+				else if (x2 == 2) {
 					V = avlext->inorderV();
 					avlext->inorder(Mostrar);
 				}
-				else if (x2 == 3)
-				{
+				else if (x2 == 3) {
 					V = avltam->inorderV();
 					avltam->inorder(Mostrar);
 				}
-				else if (x2 == 4)
-				{
+				else if (x2 == 4) {
 					V = avlfec->inorderV();
 					avlfec->inorder(Mostrar);
 				}
 
 			}
+			else if (ord == 2) {
 
-			else if (ord == 2)
-			{
-
-				if (x2 == 1)
-				{
+				if (x2 == 1) {
 					V = avlnom->antiinorderV();
-					for (int i = 0; i < V.size(); i++)
-					{
+					for (int i = 0; i < V.size(); i++) {
 						Mostrar(V[i]);
 					}
 				}
-				else if (x2 == 2)
-				{
+				else if (x2 == 2) {
 
 					V = avlext->antiinorderV();
-					for (int i = 0; i < V.size(); i++)
-					{
+					for (int i = 0; i < V.size(); i++) {
 						Mostrar(V[i]);
 					}
 				}
-				else if (x2 == 3)
-				{
+				else if (x2 == 3) {
 
 					V = avltam->antiinorderV();
-					for (int i = 0; i < V.size(); i++)
-					{
+					for (int i = 0; i < V.size(); i++) {
 						Mostrar(V[i]);
 					}
 				}
-				else if (x2 == 4)
-				{
-
+				else if (x2 == 4) {
 					V = avlfec->antiinorderV();
-					for (int i = 0; i < V.size(); i++)
-					{
+					for (int i = 0; i < V.size(); i++) {
 						Mostrar(V[i]);
 					}
-
 				}
-
 			}
-
 			cout << endl; cout << endl;
-
 			break;
-
-
-
 		}
-
-		cout << "Desea hacer otra operación (1: si, 2 : no)" << endl;
+		cout << "Desea hacer otra operaciï¿½n (1: si, 2 : no)" << endl;
 		cout << endl;
-		cin >>fl;
-
+		cin >> fl;
 		system("cls");
-
 	} while (fl == 1);
-
 	system("pause");
 	return 0;
 }

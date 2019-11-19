@@ -1,5 +1,5 @@
-#ifndef _BST_H_
-#define _BST_H_
+#ifndef BST_H
+#define BST_H
 
 #include <functional>
 
@@ -11,10 +11,6 @@ class AVLTree {
 		int   n;
 		Node* left;
 		Node* right;
-
-
-		
-		
 
 		Node(T elem)
 			: elem(elem), left(nullptr), right(nullptr), h(0), n(1) {}
@@ -56,9 +52,6 @@ class AVLTree {
 		}
 	}
 
-
-
-
 	T find(Node* node, Comparable val) {
 		if (node == nullptr) {
 			return NONE;
@@ -82,21 +75,21 @@ class AVLTree {
 		if (node == root && val == key(root->elem)) {
 			return nullptr;
 		}
-		
+
 		if (node->left != nullptr) {
 			if (val == key(node->left->elem)) {
-				
+
 				return node;
 			}
-			
+
 		}
 
 		if (node->right != nullptr) {
 			if (val == key(node->right->elem)) {
-				
+
 				return node;
 			}
-			
+
 		}
 
 		if (val < key(node->elem)) {
@@ -121,6 +114,59 @@ class AVLTree {
 			return findNode(node->right, val);
 		}
 	}
+
+	Node* finMenProx(Node* node, Comparable val) {
+		Node * n = findDad(key(node->elem));
+
+
+		if (node == nullptr) {
+			return nullptr;
+		}
+		if (val > key(node->elem) && (node->right == nullptr)) {
+
+			return node;
+		}
+		if (val > key(node->elem) && val < key(node->right->elem) && val < key(node->right->left->elem))
+		{
+
+			return node;
+		}
+
+
+
+		if (val < key(node->elem)) {
+			return finMenProx(node->left, val);
+		}
+		else {
+			return finMenProx(node->right, val);
+		}
+	}
+
+	Node* finMayProx(Node* node, Comparable val) {
+		Node * n = findDad(key(node->elem));
+
+		if (node == nullptr) {
+			return nullptr;
+		}
+		if (val < key(node->elem) && (node->left == nullptr)) {
+			return node;
+		}
+
+		if (val < key(node->elem) && key(node->left->elem) < val  && key(node->left->right->elem) < val  )
+		{
+			return node;
+		}
+
+
+
+		if (val < key(node->elem)) {
+			return finMayProx(node->left, val);
+		}
+		else {
+			return finMayProx(node->right, val);
+		}
+	}
+
 
 	/* BALANCEO */
 	int height(Node* node) {
@@ -177,20 +223,29 @@ class AVLTree {
 	{
 
 		root2 = findNode(n);
+
+		if (root2 == nullptr)
+		{
+
+			root2 = finMayProx(n);
+			V.push_back(root2->elem);
+		}
+
+
+
+
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//right
-
-
-
 		Node * hijo = root2;
 
-	
+
 
 		while (root2->right != nullptr)
 		{
 			root2 = root2->right;
 			root3 = root2;
 			V.push_back(root2->elem);
+
 			while (root3->left != nullptr)
 			{
 				root3 = root3->left;
@@ -219,6 +274,15 @@ class AVLTree {
 	{
 
 		root2 = findNode(n);
+
+		if (root2 == nullptr)
+		{
+			root2 = finMenProx(n);
+			V.push_back(root2->elem);
+		}
+
+
+
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//left
 		Node * hijo = root2;
@@ -229,6 +293,7 @@ class AVLTree {
 			root2 = root2->left;
 			root3 = root2;
 			V.push_back(root2->elem);
+
 			while (root3->right != nullptr)
 			{
 				root3 = root3->right;
@@ -238,12 +303,12 @@ class AVLTree {
 
 		if (papi != nullptr)
 		{
-			if (papi->elem < hijo->elem)
+			if (key(papi->elem) < key(hijo->elem))
 			{
 				V.push_back(papi->elem);
 				filtradomenor(key(papi->elem));
 			}
-			else if (hijo->elem > root->elem)
+			else if (key(hijo->elem) > key(root->elem))
 			{
 				V.push_back(root->elem);
 				filtradomenor(key(root->elem));
@@ -255,12 +320,20 @@ class AVLTree {
 	}
 
 
-	
+
 
 	vector <T> filtradoequal(Comparable n)
 	{
 
 		root2 = findNode(n);
+
+		if (root2 == nullptr)
+		{
+			cout << "Elemento no existe";
+
+		}
+
+
 		Node * root3 = root2;
 		Node * root4;
 
@@ -340,16 +413,101 @@ class AVLTree {
 
 				}
 			}
-		}	
+		}
 
 		return V;
 	}
 
+	vector <T> filtradoempiezacon(string n, vector<Archivo*> vec) {
+		//vector<T> nuevo;
+		int len_n = n.length();
+		int tamano = vec.size();
+
+		cout << n.length() << endl;
+		cout << vec.size() << endl;
+
+		string A;
+		string B;
+
+		for (int i = 0; i < tamano; i++) {
+
+			A.clear();
+			B.clear();
+
+			for (int j = 0; j < len_n; j++) {
+				if (vec.at(i)->getnombre().length() >= len_n) {
+					char aux = vec.at(i)->getnombre().at(j);
+					char aux2 = n.at(j);
+					A.push_back(aux);
+					B.push_back(aux2);
+				}
+				else { A.push_back('Z'); }
+			}
+			if (A == B) V.push_back(vec[i]);
+		}
+		return V;
+	}
+
+	vector <T> filtradoterminacon(string n, vector<Archivo*> vec) {
+
+		cout << n.length() << endl;
+		cout << vec.size() << endl;
+
+		reverse(n.begin(), n.end());
+
+		int len_n = n.length();
+		int tamano = vec.size();
 
 
+		cout << n.length() << endl;
+		cout << vec.size() << endl;
 
+		string A;
+		string B;
 
+		for (int i = 0; i < tamano; i++) {
 
+			A.clear();
+			B.clear();
+
+			for (int j = 0; j < len_n; j++) {
+				if (vec.at(i)->getnombre().length() >= len_n) {
+					int longitud = vec.at(i)->getnombre().length() - 1;
+					char aux = vec.at(i)->getnombre().at(longitud - j);
+					char aux2 = n.at(j);
+					A.push_back(aux);
+					B.push_back(aux2);
+				}
+				else { A.push_back('Z'); }
+			}
+			if (A == B) V.push_back(vec[i]);
+		}
+		return V;
+	}
+
+	vector <T> filtradocontiene(string n, vector<Archivo*> vec) {
+
+		int len_n = n.length();
+		int tamano = vec.size();
+
+		string A;
+
+		for (int i = 0; i < tamano; i++) {
+
+			A.clear();
+
+			for (int j = 0; j < vec.at(i)->getnombre().length() - 1; j++) {
+				if (vec.at(i)->getnombre().length() >= len_n) {
+					A = vec.at(i)->getnombre().substr(j, len_n);
+					if (A == n) {
+						V.push_back(vec[i]);
+						j = vec.at(i)->getnombre().length() - 1;
+					}
+				}
+			}
+		}
+		return V;
+	}
 
 public:
 	AVLTree(std::function<Comparable(T)>  key = [](T a) {return a; })
@@ -423,6 +581,13 @@ public:
 		return findDad(root, val);
 	}
 
+	Node* finMayProx(Comparable val) {
+		return finMayProx(root, val);
+	}
+
+	Node* finMenProx(Comparable val) {
+		return finMenProx(root, val);
+	}
 	//list<T> findAll(Comparable val) {
 	//	return nullptr; // TODO!!
 	//}*/
@@ -445,7 +610,7 @@ public:
 
 		for (int i = 0; i < V.size() / 2; i++)
 		{
-			T aux = V[i] ;
+			T aux = V[i];
 			V[i] = V[V.size() - 1 - i];
 			V[V.size() - 1 - i] = aux;
 		}
@@ -474,8 +639,24 @@ public:
 		return V;
 	}
 
+	vector <T> FiltradoEmpiezaCon(string n, vector<Archivo*> aux) {
+		V.clear();
+		V = filtradoempiezacon(n, aux);
+		return V;
+	}
 
-	
+	vector <T> FiltradoTerminaCon(string n, vector<Archivo*> aux) {
+		V.clear();
+		V = filtradoterminacon(n, aux);
+		return V;
+	}
+
+	vector <T> FiltradoContiene(string n, vector<Archivo*> aux) {
+		V.clear();
+		V = filtradocontiene(n, aux);
+		return V;
+	}
+
 };
 
 #endif
