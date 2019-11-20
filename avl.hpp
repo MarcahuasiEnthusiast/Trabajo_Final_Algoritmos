@@ -219,54 +219,34 @@ class AVLTree {
 
 
 
-	vector <T> filtradomayor(Comparable n)
-	{
-
+	vector <T> filtradomayor(Comparable n){
 		root2 = findNode(n);
-
-		if (root2 == nullptr)
-		{
-
+		if (root2 == nullptr){
 			root2 = finMayProx(n);
 			V.push_back(root2->elem);
 		}
-
-
-
-
 		Node * root3 = root2;
 		Node * papi = findDad(key(root2->elem));//right
 		Node * hijo = root2;
-
-
-
-		while (root2->right != nullptr)
-		{
+		while (root2->right != nullptr){
 			root2 = root2->right;
 			root3 = root2;
 			V.push_back(root2->elem);
-
-			while (root3->left != nullptr)
-			{
+			while (root3->left != nullptr){
 				root3 = root3->left;
 				V.push_back(root3->elem);
 			}
 		}
-
-		if (papi != nullptr)
-		{
-			if (key(papi->elem) > key(hijo->elem))
-			{
+		if (papi != nullptr){
+			if (key(papi->elem) > key(hijo->elem)){
 				V.push_back(papi->elem);
 				filtradomayor(key(papi->elem));
 			}
-			else if (key(hijo->elem) < key(root->elem))
-			{
+			else if (key(hijo->elem) < key(root->elem)){
 				V.push_back(root->elem);
 				filtradomayor(key(root->elem));
 			}
 		}
-
 		return V;
 	}
 
